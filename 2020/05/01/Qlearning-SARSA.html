@@ -228,7 +228,7 @@ The policy used to make the update and the one used to pick next action is the s
 
 <p>Here we shall find a case study with Cliff Walker Enviornment . Here is the <a href="https://github.com/mniju/RL-Algorithms/blob/master/Q-Learning%20and%20SARSA%20_%20EVSARSA.ipynb">jupyter notebook</a> comparision of Q learning and SARSA for the cliff walker enviornment.</p>
 
-<p>’’’ This is a simple implementation of the Gridworld Cliff
+<p>` This is a simple implementation of the Gridworld Cliff
     reinforcement learning task.</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Adapted from Example 6.6 (page 132) from Reinforcement Learning: An Introduction
@@ -244,16 +244,17 @@ The board is a 4x12 matrix, with (using Numpy matrix indexing):
     [3, 1..10] as the cliff at bottom-center
 
 Each time step incurs -1 reward, and stepping into the cliff incurs -100 reward
-and a reset to the start. An episode terminates when the agent reaches the goal.'''
+and a reset to the start. An episode terminates when the agent reaches the goal.`
 </code></pre></div></div>
 
 <p>The enviornment is shown below</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>o  o  o  o  o  o  o  o  o  o  o  o
+<p><code class="highlighter-rouge">
+o  o  o  o  o  o  o  o  o  o  o  o
 o  o  o  o  o  o  o  o  o  o  o  o
 o  o  o  o  o  o  o  o  o  o  o  o
 S  C  C  C  C  C  C  C  C  C  C  G
-</code></pre></div></div>
+</code></p>
 
 <p>Here,</p>
 
@@ -278,22 +279,69 @@ S  C  C  C  C  C  C  C  C  C  C  G
 
 <p>Q-Learning Actions</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  v  v  &gt;  v  v 
- &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  v 
- &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  v 
- S  C  C  C  C  C  C  C  C  C  C  G
-</code></pre></div></div>
+<p>`</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <p>v  v  &gt;  v  v</p>
+              <blockquote>
+                <blockquote>
+                  <blockquote>
+                    <blockquote>
+                      <p>v 
+ v 
+ S  C  C  C  C  C  C  C  C  C  C  G</p>
+                    </blockquote>
+                  </blockquote>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<p>`</p>
 
 <p>Here we can see from the starting point S, the policy goes to the immediate right and reaches the Goal.</p>
 
 <p>SARSA Actions</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  v 
+<p>`</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <blockquote>
+                <blockquote>
+                  <blockquote>
+                    <blockquote>
+                      <p>v 
  ^  ^  ^  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  &gt;  v 
  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  &gt;  v 
  S  C  C  C  C  C  C  C  C  C  C  G
-</code></pre></div></div>
-<p>Here we can see , the agent goes to the top of the grid , takes a right and then reaches the Goal</p>
+`
+Here we can see , the agent goes to the top of the grid , takes a right and then reaches the Goal</p>
+                    </blockquote>
+                  </blockquote>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
 
 <p><img src="../../../images/cliffwalkingpaths.JPG" alt="Qlearning VS Sarsa" /></p>
 
