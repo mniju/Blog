@@ -153,6 +153,7 @@ $$
 Q learning is an off policy TD Control.
 
 The equation for Q learning is 
+
 $$
 
 Q({S_t},{A_t}) \leftarrow Q({S_t},{A_t}) + \alpha \left[{R_{t+1}} + \gamma \underset{a}{max} Q({S_{t+1}},a) - Q({S_t},{A_t})\right]
@@ -170,7 +171,6 @@ Since both the policies are different , Q learning is  Off policy
 
 It should be clear from above that , for each estimate of Q at state $$S_{t}$$ , Q learning uses the maximum action value of the the state $$S_{t+1}$$ (Highlighted in blue).However, the next action is always derived by a different policy such as  $$\epsilon$$-greedy (Highlighted in Green)
 
-To be  more clear , the item highlighted in blue is used to update an estimate of the Q values.But the maximum action value is not used for the next action.Its done in other way highlighted in Green
 
 ### Q Learning Vs SARSA:
 
@@ -282,12 +282,12 @@ sarsa is an onpolicy algorithm and it cannot afford to fall the cliff every time
 
 ## Summary
 First we saw the RL setup , some basic blocks in RL and then finally we compared Q learning with Sarsa.
-Though i did not cover teh subject much rigorously , I hope this will give a small boost for the beginner to dive deep to Reinforcement 
+I just scratched the surface here.There is so much to explore in RL. I hope this will give a small boost for the beginner to dive deep to Reinforcement 
 Learning . 
 
-STOP Reading , Start DOING !!
+Keep Learning ! Start DOING !!
 
-## Some Links that are Useful 
+## Useful resources 
 
 1. [Book:Reinforcement Learning An introduction](http://incompleteideas.net/book/the-book-2nd.html) by Sutton  & Barto
 2. [OnPolicy Vs Off Policy](https://stats.stackexchange.com/questions/184657/what-is-the-difference-between-off-policy-and-on-policy-learning) 
