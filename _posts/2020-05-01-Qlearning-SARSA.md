@@ -1,3 +1,11 @@
+---
+toc: true
+layout: post
+description: An Intro To Q learning 
+categories: [markdown]
+title: An Example Markdown Post
+---
+
 # Notes on Q learning
 
 **Q learning** - One of the sucessful techniques in Reinforcement Learning .It was initially introduced in *1989 by [Watkins](https://link.springer.com/article/10.1007/BF00992698)*.
