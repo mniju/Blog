@@ -1,9 +1,9 @@
 ---
-toc: false
+toc: true
 layout: post
 description: An Intro To Q learning 
 categories: [RL]
-title: Notes on Q learniing
+title: Notes on Q learning
 ---
 
 ## Introduction
@@ -13,29 +13,32 @@ Q learning came to light whenDeepmind used it to [play Atari games](https://web.
 
 In General,Q learning is a *model free* learning .Its an off policy TD Control.
 
-In this post , We will see a bit about Q learning and where its stands generally in the RL setup. 
+In this post , We will see a bit about Q learning and where its stands generally in the RL . 
 
 ### Reinforcement Learning  Basic Setup
 
 ![RL Setup][RLSetup]
 
 
-Simply , In reinforcement Learning, the  **Agent** acts on the **Enviornment** with **Action** and collects the **Reward**.
+Simply , In Reinforcement Learning, the  **Agent** acts on the **Enviornment** with **Action** and collects the **Reward**.
 The Enviornment transitions from an older state  to a new **state** in reponse to the action by the Agent.
 
 ### State Value and Action Value.
 
 **Policy:** defines the learning agents way of behaving at a given time.A policy is a Mapping from States to probability of selecting different actions.Its denoted by $$\pi$$.
 
-If the  agent is following policy $$\pi$$ at time t , then $$\pi(a|s)$$ is the probability that action $$A_{t}$$ = a if state,$$S_{t}$$ =s.The \| sign in the middle stands for conditional probability.
+If the  agent is following policy $$\pi$$ at time t , then $$\pi(a|s)$$ is the probability that action $$A_{t}$$ = a if state,$$S_{t}$$ =s.
 
 **Reward** is the goal of the RL Problem. The objective  of the agent is to maximize the total rewards over time.
 
 The **State Value** for a state $$s$$ under policy $$\pi$$ denoted as $$v_{\pi}(s)$$ ,is defined as the Expected return when starting in $$s$$ and following $$\pi$$ thereafter.
 
 $$
-v_{\pi}(s) = \mathbb{E}_{\pi} \left[ G_{t} | S_{t}=s  \right] = \mathbb{E}_{\pi}\left[ \sum_{k=0 }^{\infty}\gamma^{k}R_{t+k+1}|S_{t}=s \right] for\  all\  s \in S
+v_{\pi}(s) = \mathbb{E}_{\pi} \left[ G_{t} | S_{t}=s  \right] = \mathbb{E}_{\pi}\left[ \sum_{k=0 }^{\infty}\gamma^{k}R_{t+k+1}|S_{t}=s \right] 
 $$
+
+for all  s $$\in$$ S.
+
 The value of the state is the total amount of reward which the agent can accumulate over time.
 There will be a state value for each state.
 
@@ -78,7 +81,6 @@ Although we need a model , we need the model to generate only sample transitions
 
 At the end of the learning in model free methods, we won't have transition probabilities of the enviornment neither we know the rewards we will get without taking that action. However a policy alone is  learnt based on the model(eg.Policy Gradient , Q learning)
 
-In case of Q - Learning ,It estimates the optimal Q values for each action in the state . We pick an action for that state that has the highest Q value and defined as the policy
 
 ### On Policy Vs Off Policy Methods
 
@@ -89,12 +91,11 @@ In On-Policy methods - the Policy that is being learnt and the policy that is us
 
 In off policy methods, two different policies are used
 
-1. Target policy - The  policy that is being learned about - This will be the optimal policy.
-2. Behaviour policy - The policy that is used to generate behaviour - This will be more exploratory to explore more actions.
+1. *Target policy* - The  policy that is being learned about - This will be the optimal policy.
+2. *Behaviour policy* - The policy that is used to generate behaviour - This will be more exploratory to explore more actions.
    
-Q learning is an off policy TD control as the policy we use to estimate q values and the policy that is used to take actions are different
+Q learning is an off policy TD control as the policy we use to estimate qvalues and the policy that is used to take actions are different.
 
- Lets see a bit about Temporal Difference (TD) before diving to Q-learning.
 
 ### Temporal difference Learning
  TD stands for Temporal difference Learning.  
@@ -118,9 +119,11 @@ V({S_t}) \leftarrow V({S_t}) + \alpha \left[{R_{t+1}} + \gamma V({S_{t+1}}) - V(
 
 $$  
 
-Here $$V({S_t})$$ is the estimated value and $$V({S_{t+1}})$$ is the successor state , $${R_{t+1}}$$ is the reward collected and the computed backedup value is $${R_{t+1}} + \gamma V({S_{t+1}})$$
+Here $$V({S_t})$$ is the estimated value and $$V({S_{t+1}})$$ is the successor state , $${R_{t+1}}$$ is the reward collected
+and the computed backedup value is $${R_{t+1}} + \gamma V({S_{t+1}})$$
 
-The Error between the estimated value of $$S_{t}$$ and the better estimate $${R_{t+1}} + \gamma V({S_{t+1}}) - V({S_t})$$  is called TD error $$\delta$$.
+The Error between the estimated value of $$S_{t}$$ and the better estimate $$({R_{t+1}} + \gamma V({S_{t+1}}) - V({S_t}))$$ is called TD error $$\delta$$.
+TD error is
 $$
 \delta_{t} = {R_{t+1}} + \gamma V({S_{t+1}}) - V({S_t})
 $$
