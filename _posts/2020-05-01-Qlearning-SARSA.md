@@ -210,12 +210,12 @@ Here we shall find a case study with Cliff Walker Enviornment . Here is the [jup
 The enviornment is shown below
 
 
-`
+```
 o  o  o  o  o  o  o  o  o  o  o  o
 o  o  o  o  o  o  o  o  o  o  o  o
 o  o  o  o  o  o  o  o  o  o  o  o
 S  C  C  C  C  C  C  C  C  C  C  G
-`
+```
 
 Here,
 
@@ -240,24 +240,24 @@ The policy learnt by both the Q learning and SARSA can be compared.
 
 Q-Learning Actions
 
-`
+```
  >  >  >  >  >  >  >  v  v  >  v  v 
  >  >  >  >  >  >  >  >  >  >  >  v 
  >  >  >  >  >  >  >  >  >  >  >  v 
  S  C  C  C  C  C  C  C  C  C  C  G
 
-`
+```
 
 Here we can see from the starting point S, the policy goes to the immediate right and reaches the Goal.
 
 SARSA Actions
 
-`
+```
  >  >  >  >  >  >  >  >  >  >  >  v 
  ^  ^  ^  >  >  >  >  >  >  >  >  v 
  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  >  v 
  S  C  C  C  C  C  C  C  C  C  C  G
-`
+```
 Here we can see , the agent goes to the top of the grid , takes a right and then reaches the Goal
 
 ![Qlearning VS Sarsa][qlearnVsSarsapaths]
