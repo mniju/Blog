@@ -2,18 +2,20 @@
 toc: true
 layout: post
 description: An Intro To Q learning 
-categories: [RL]
+categories: [Reinforcement Learning]
 title: Notes on Q learning
 ---
 
 ## Introduction
 
-**Q learning** - One of the sucessful techniques in Reinforcement Learning .It was initially introduced in *1989 by [Watkins](https://link.springer.com/article/10.1007/BF00992698)*.
-Q learning came to light whenDeepmind used it to [play Atari games](https://web.stanford.edu/class/psych209/Readings/MnihEtAlHassibis15NatureControlDeepRL.pdf) with superhuman perfomance   in 2015.
+**Q learning**  is one of the sucessful techniques in Reinforcement Learning .It was initially introduced in *1989 by [Watkins](https://link.springer.com/article/10.1007/BF00992698)*.
+Q learning came to light when *Deepmind* used it to [play Atari games](https://web.stanford.edu/class/psych209/Readings/MnihEtAlHassibis15NatureControlDeepRL.pdf) with superhuman perfomance   in 2015.
 
 In General,Q learning is a *model free* learning .Its an off policy TD Control.
 
-In this post , We will see a bit about Q learning and where its stands generally in the RL . 
+In this post , We will see a  small RL Introduction , then into Qlearning and end with Qlearning & Sarsa Comparision. 
+
+The **jupyter notebook** comparision of Q learning and SARSA for the cliff walker enviornment can be found [here.]((https://github.com/mniju/RL-Algorithms/blob/master/Q-Learning%20and%20SARSA%20_%20EVSARSA.ipynb) ) 
 
 ### Reinforcement Learning  Basic Setup
 
@@ -23,15 +25,15 @@ In this post , We will see a bit about Q learning and where its stands generally
 Simply , In Reinforcement Learning, the  **Agent** acts on the **Enviornment** with **Action** and collects the **Reward**.
 The Enviornment transitions from an older state  to a new **state** in reponse to the action by the Agent.
 
-### State Value and Action Value.
+### State Value and Action Value
 
-**Policy:** defines the learning agents way of behaving at a given time.A policy is a Mapping from States to probability of selecting different actions.Its denoted by $$\pi$$.
+**Policy** defines the learning agents way of behaving at a given time.A policy is a Mapping from States to probability of selecting different actions.Its denoted by $$\pi$$.
 
-If the  agent is following policy $$\pi$$ at time t , then $$\pi(a|s)$$ is the probability that action $$A_{t}$$ = a if state,$$S_{t}$$ =s.
+If the  agent is following policy $$\pi$$ at time t , then $$\pi(a\mid s)$$ is the probability that action $$A_{t}$$ = a if state,$$S_{t}$$ =s.
 
 **Reward** is the goal of the RL Problem. The objective  of the agent is to maximize the total rewards over time.
 
-The **State Value** for a state $$s$$ under policy $$\pi$$ denoted as $$v_{\pi}(s)$$ ,is defined as the Expected return when starting in $$s$$ and following $$\pi$$ thereafter.
+The **State Value** for a state $$s$$ under policy $$\pi$$ denoted as $$v_{\pi}(s)$$ ,is defined as the Expected return when starting in $$s$$ and following policy $$\pi$$ thereafter.
 
 $$
 v_{\pi}(s) = \mathbb{E}_{\pi} \left[ G_{t} | S_{t}=s  \right] = \mathbb{E}_{\pi}\left[ \sum_{k=0 }^{\infty}\gamma^{k}R_{t+k+1}|S_{t}=s \right] 
@@ -40,7 +42,7 @@ $$
 for all  s $$\in$$ S.
 
 The value of the state is the total amount of reward which the agent can accumulate over time.
-There will be a state value for each state.
+Each state s has a value v(s) .
 
 | State        | Value        | 
 | :-----------:|:------------:|
@@ -51,7 +53,7 @@ There will be a state value for each state.
 
 
 
-**Action value** is denoted as  $$Q(s,a)$$ is the expected return starting from state s, taking an action a and then following policy $$\pi$$.
+**Action value**  denoted as  $$Q(s,a)$$ is the expected return starting from state s, taking an action a and then following policy $$\pi$$.
 
 $$
 q_{\pi}(s,a) = \mathbb{E}_{\pi} \left[ G_{t} | S_{t}=s ,A_{t}=a \right] = \mathbb{E}_{\pi}\left[ \sum_{k=0 }^{\infty}\gamma^{k}R_{t+k+1}|S_{t}=s ,A_{t}=a \right] 
@@ -60,16 +62,16 @@ $$
 
 We have qvalues for each state for all the possible actions .
 
-Lets say , we have four states and 3 possibe actions for each state,then it can be shown in the tabular form
+Lets say , we have four states and each state has three possibe actions ,then Q values  can be shown in the *tabular* form
 
-| State/Actions | Action1       | Action2    |Action3    |
-| :-----------: |:-------------:| :---------:|:---------:|
+| State/Actions | Action1         | Action2      |Action3      |
+| :-----------: |:---------------:| :-----------:|:-----------:|
 | State1        | $$Q(s1,a1)$$    | $$Q(s1,a2)$$ |$$Q(s1,a3)$$ |
 | State2        | $$Q(s2,a1)$$    | $$Q(s2,a2)$$ |$$Q(s2,a3)$$ |
 | State3        | $$Q(s3,a1)$$    | $$Q(s3,a2)$$ |$$Q(s3,a3)$$ |
 | State4        | $$Q(s4,a1)$$    | $$Q(s4,a2)$$ |$$Q(s4,a3)$$ |
 
-As shown in the  table above There is a action value  $$Q$$  for all the actions in  a state unlike the Value function $$V$$ that has a value just each state.when the model is not available, the Q values helps to choose the next best action from that state.
+As shown in the  table above There is a action value  $$Q$$  for all the actions in  a state unlike the Value function $$V$$ that has a value just for each state.When the model is not available, the Q values helps to choose the next best action from that state.
 
 ### Model Based Vs Model Free
 
@@ -87,9 +89,9 @@ At the end of the learning in model free methods, we won't have transition proba
   * On-Policy methods attempt to improve the policy that is used to make  decisions.
   * Off-Policy methods evaluate or improve a policy different from the one that is used to make decisions.
 
-In On-Policy methods - the Policy that is being learnt and the policy that is used to explore and take actions and move to next state are the same.
+In On-Policy methods - the Policy that is being learnt and the policy that is used to explore ,move to next state are the same.
 
-In off policy methods, two different policies are used
+In off policy methods, two different policies are used.
 
 1. *Target policy* - The  policy that is being learned about - This will be the optimal policy.
 2. *Behaviour policy* - The policy that is used to generate behaviour - This will be more exploratory to explore more actions.
@@ -100,7 +102,7 @@ Q learning is an off policy TD control as the policy we use to estimate qvalues 
 ### Temporal difference Learning
  TD stands for Temporal difference Learning.  
 
- TD is a hybrid of both the Montecarlo and Dynamic programming.
+ TD is a hybrid of both the *Montecarlo* and *Dynamic programming*.
 
  * Like MonteCarlo, its Model free.(ie) TD methods can learn directly from raw experience without a model of the enviornments dynamics.
  * Like Dynamic Programming , they *bootstrap* , meaning they  update estimates  based  on other estimate and doesn't wait for the END of the episode to update.
@@ -122,10 +124,12 @@ $$
 Here $$V({S_t})$$ is the estimated value and $$V({S_{t+1}})$$ is the successor state , $${R_{t+1}}$$ is the reward collected
 and the computed backedup value is $${R_{t+1}} + \gamma V({S_{t+1}})$$
 
-The Error between the estimated value of $$S_{t}$$ and the better estimate $$({R_{t+1}} + \gamma V({S_{t+1}}) - V({S_t}))$$ is called TD error $$\delta$$.
-TD error is
+The Error between the estimated value of $$S_{t}$$ and the better estimate $$({R_{t+1}} + \gamma V({S_{t+1}}) - V({S_t}))$$ is called *TD error* $$\delta$$. 
+
 $$
+
 \delta_{t} = {R_{t+1}} + \gamma V({S_{t+1}}) - V({S_t})
+
 $$
 
 More Genericially , TD Update can be written as 
@@ -133,8 +137,6 @@ More Genericially , TD Update can be written as
 $$
 NewEstimate \leftarrow OldEstimate + stepsize  \left[ Target - OldEstimate\right]
 $$
-
-With a model , state values alone is sufficient. We will  have the state value for each state .From a state we can transition to the new state, that gives high value Returns
 
 When the model is not available we will be using Action values. (because to calculate state value, we need probability transions)
 
@@ -170,13 +172,15 @@ It should be clear from above that , for each estimate of Q at state $$S_{t}$$ ,
 
 To be  more clear , the item highlighted in blue is used to update an estimate of the Q values.But the maximum action value is not used for the next action.Its done in other way highlighted in Green
 
-## Q Learning Vs SARSA:
+### Q Learning Vs SARSA:
+
+#### SARSA
 
 [SARSA](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.17.2539&rep=rep1&type=pdf) is defined as on-policy TD Control to find optimal policy.
-It stands for the transition given by State,Action,Reward,(next)State,(next)Action - SARSA
+It stands for the transition given by **S**tate,**A**ction,**R**eward,(next)**S**tate,(next)**A**ction - SARSA
 
 
-The update equation is given as
+The sarsa update equation is given as
 
 $$
 
@@ -186,17 +190,17 @@ $$
 
 We use the backed up action values at next state $$Q({S_{t+1}},{A_{t+1}})$$ to re-estimate the values at state $$Q({S_t},{A_t})$$
 
-In SARSA the updates are made assuming we follow the actions defined by the policy - We dont have a seperate greedy policy for the updates. as in Q learning.
+In SARSA the updates are made assuming we follow the actions defined by the policy - There is no seperate greedy policy for the updates. as in Q learning.
 The policy used to make the update and the one used to pick next action is the same.Thus SARSA is *online*.
 
-From the  state $${S_t}$$,the agent chooses  $${A_t}$$  , collects a reward $${R_{t+1}}$$ , and goes to the next state $${S_{t+1}}$$. The agent chooses the next action $${A_{t+1}}$$ based on its policy .We Collect the  backed up action values at $$Q({S_{t+1}},{A_{t+1}})$$ and use it to estimate action values of the former state action $$Q({S_t},{A_t})$$ by calculating the TD error - the difference between expected value- the current action value which in turn moves towards a better policy.  
+From the  state $${S_t}$$,the agent chooses  $${A_t}$$  , collects a reward $${R_{t+1}}$$ , and goes to the next state $${S_{t+1}}$$. The agent chooses the next action $${A_{t+1}}$$ based on its policy .We collect the   action values at $$Q({S_{t+1}},{A_{t+1}})$$ and use it to estimate action values of the former state action $$Q({S_t},{A_t})$$ .
 #### The sarsa Algorithm 
 
 ![SarsaAlgorithm][SarsaAlgorithm]
 
-It should be clear now that , in the line highlighted with Blue, the Agent chooses an action A' from next state state S' state  using the greedy policy  to update the current state S. In the final line $$A\leftarrow A^{'}$$ , the same  action A' selected previously (by $$\epsilon$$-greedy policy) for the update is used by the Agent to move to the next state .
+In the line highlighted with Blue, the Agent chooses an action A' from next state state S' state  using the greedy policy  to update the current state S. In the final line $$A\leftarrow A^{'}$$ , the same  action A' selected previously (by $$\epsilon$$-greedy policy) for the update is used by the Agent to transition to the next state .
 
-### Case Study : Cliff Walker Enviornment
+## Case Study : Cliff Walker Enviornment
 
 Here we shall find a case study with Cliff Walker Enviornment . Here is the [jupyter notebook](https://github.com/mniju/RL-Algorithms/blob/master/Q-Learning%20and%20SARSA%20_%20EVSARSA.ipynb) comparision of Q learning and SARSA for the cliff walker enviornment.
 
@@ -237,15 +241,15 @@ Here,
 * Stepping into C causes agent to restart from S
 * Reward is -1 on on all other transitions.
 
-We will run both the Q learning and Sarsa on this enviornment to compare their performances.The jupyter notebook can be found [here](insert the link)
+We will run both the Q learning and Sarsa on this enviornment to compare their performances.
 
-We could see that  Q learning learns the best policy after an inital transient (Insert Image)
+We could see that  Q learning learns the best policy after an inital transient.
 
 
 ![Qlearning VS Sarsa][qlearnVsSarsa]
 
 
-### Learnt Policy 
+### Policy Comparision 
 
 The policy learnt by both the Q learning and SARSA can be compared. 
 
@@ -276,10 +280,16 @@ Here we can see , the agent goes to the top of the grid , takes a right and then
 SARSA takes the longer, safer path going  to the top and then moving towards the Goal. However, Q learning takes the best action and takes the path near to the cliff, the optimal path (shortest) .
 sarsa is an onpolicy algorithm and it cannot afford to fall the cliff every time. So it takes a much safer path.
 
+## Summary
+First we saw the RL setup , some basic blocks in RL and then finally we compared Q learning with Sarsa.
+Though i did not cover teh subject much rigorously , I hope this will give a small boost for the beginner to dive deep to Reinforcement 
+Learning . 
+
+STOP Reading , Start DOING !!
 
 ## Some Links that are Useful 
 
-1. Reinforcement Learning An introduction by Richard Sutton and Andrew Barto
+1. [Book:Reinforcement Learning An introduction](http://incompleteideas.net/book/the-book-2nd.html) by Sutton  & Barto
 2. [OnPolicy Vs Off Policy](https://stats.stackexchange.com/questions/184657/what-is-the-difference-between-off-policy-and-on-policy-learning) 
 3. [Modelbased Vs ModelFree- from Reddit](https://www.reddit.com/r/reinforcementlearning/comments/bsyloo/model_based_vs_model_free_doubt/)
 4. [Modelbased Vs ModelFree- from Quora](https://www.quora.com/What-is-the-difference-between-model-based-and-model-free-reinforcement-learning/answer/James-MacGlashan?ch=10&share=481a22bb&srid=MOC5)
@@ -294,9 +304,3 @@ sarsa is an onpolicy algorithm and it cannot afford to fall the cliff every time
 [qlearnVsSarsa]:../../../../images/qlearning_vs_sarsa.png
 [qlearnVsSarsapaths]:../../../../images/cliffwalkingpaths.JPG
 [RLSetup]:../../../../images/reinforcementlearningsetup.jpg
-
-
-
-
-
-
