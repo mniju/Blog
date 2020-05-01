@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://mniju.github.io/Blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mniju.github.io/Blog/" rel="alternate" type="text/html" /><updated>2020-05-01T05:28:23-05:00</updated><id>https://mniju.github.io/Blog/feed.xml</id><title type="html">fastpages</title><subtitle>An easy to use blogging platform with support for Jupyter Notebooks.</subtitle><entry><title type="html">An Example Markdown Post</title><link href="https://mniju.github.io/Blog/markdown/2020/05/01/Qlearning-SARSA.html" rel="alternate" type="text/html" title="An Example Markdown Post" /><published>2020-05-01T00:00:00-05:00</published><updated>2020-05-01T00:00:00-05:00</updated><id>https://mniju.github.io/Blog/markdown/2020/05/01/Qlearning-SARSA</id><content type="html" xml:base="https://mniju.github.io/Blog/markdown/2020/05/01/Qlearning-SARSA.html">&lt;h1 id=&quot;notes-on-q-learning&quot;&gt;Notes on Q learning&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://mniju.github.io/Blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mniju.github.io/Blog/" rel="alternate" type="text/html" /><updated>2020-05-01T05:52:05-05:00</updated><id>https://mniju.github.io/Blog/feed.xml</id><title type="html">fastpages</title><subtitle>An easy to use blogging platform with support for Jupyter Notebooks.</subtitle><entry><title type="html">Notes on Q learniing</title><link href="https://mniju.github.io/Blog/rl/2020/05/01/Qlearning-SARSA.html" rel="alternate" type="text/html" title="Notes on Q learniing" /><published>2020-05-01T00:00:00-05:00</published><updated>2020-05-01T00:00:00-05:00</updated><id>https://mniju.github.io/Blog/rl/2020/05/01/Qlearning-SARSA</id><content type="html" xml:base="https://mniju.github.io/Blog/rl/2020/05/01/Qlearning-SARSA.html">&lt;h1 id=&quot;notes-on-q-learning&quot;&gt;Notes on Q learning&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;Q learning&lt;/strong&gt; - One of the sucessful techniques in Reinforcement Learning .It was initially introduced in &lt;em&gt;1989 by &lt;a href=&quot;https://link.springer.com/article/10.1007/BF00992698&quot;&gt;Watkins&lt;/a&gt;&lt;/em&gt;.
 Q learning came to light whenDeepmind used it to &lt;a href=&quot;https://web.stanford.edu/class/psych209/Readings/MnihEtAlHassibis15NatureControlDeepRL.pdf&quot;&gt;play Atari games&lt;/a&gt; with superhuman perfomance   in 2015.&lt;/p&gt;
@@ -9,21 +9,21 @@ Q learning came to light whenDeepmind used it to &lt;a href=&quot;https://web.st
 
 &lt;h3 id=&quot;reinforcement-learning--basic-setup&quot;&gt;Reinforcement Learning  Basic Setup&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../../images/reinforcementlearningsetup.jpg&quot; alt=&quot;RL Setup&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../images/reinforcementlearningsetup.jpg&quot; alt=&quot;RL Setup&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Simply , In reinforcement Learning, the  &lt;strong&gt;Agent&lt;/strong&gt; acts on the &lt;strong&gt;Enviornment&lt;/strong&gt; with &lt;strong&gt;Action&lt;/strong&gt; and collects the &lt;strong&gt;Reward&lt;/strong&gt;.
 The Enviornment transitions from an older state  to a new &lt;strong&gt;state&lt;/strong&gt; in reponse to the action by the Agent.&lt;/p&gt;
 
 &lt;h3 id=&quot;state-value-and-action-value&quot;&gt;State Value and Action Value.&lt;/h3&gt;
 
-&lt;p&gt;&lt;strong&gt;Policy:&lt;/strong&gt; defines the learning agents way of behaving at a given time.A policy is a Mapping from States to probability of selecting different actions.Its denoted by $\pi$.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Policy:&lt;/strong&gt; defines the learning agents way of behaving at a given time.A policy is a Mapping from States to probability of selecting different actions.Its denoted by &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\pi&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathdefault&quot; style=&quot;margin-right:0.03588em;&quot;&gt;π&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;.&lt;/p&gt;
 
 &lt;table&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
       &lt;td&gt;If the  agent is following policy $\pi$ at time t , then $\pi(a&lt;/td&gt;
-      &lt;td&gt;s)$ is the probability that action $A_{t}$ = a if state,$S_{t}$ =s.’&lt;/td&gt;
-      &lt;td&gt;’ in the middle stands for conditional probability.&lt;/td&gt;
+      &lt;td&gt;s)$ is the probability that action $A_{t}$ = a if state,$S_{t}$ =s.The&lt;/td&gt;
+      &lt;td&gt;sign in the middle stands for conditional probability.&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -220,7 +220,7 @@ The policy used to make the update and the one used to pick next action is the s
 &lt;p&gt;From the  state ${S_t}$,the agent chooses  ${A_t}$  , collects a reward ${R_{t+1}}$ , and goes to the next state ${S_{t+1}}$. The agent chooses the next action ${A_{t+1}}$ based on its policy .We Collect the  backed up action values at $Q({S_{t+1}},{A_{t+1}})$ and use it to estimate action values of the former state action $Q({S_t},{A_t})$ by calculating the TD error - the difference between expected value- the current action value which in turn moves towards a better policy.&lt;/p&gt;
 &lt;h4 id=&quot;the-sarsa-algorithm&quot;&gt;The sarsa Algorithm&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../../images/sarsaAlgorithm.jpg&quot; alt=&quot;SarsaAlgorithm&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../images/sarsaAlgorithm.jpg&quot; alt=&quot;SarsaAlgorithm&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It should be clear now that , in the line highlighted with Blue, the Agent chooses an action A’ from next state state S’ state  using the greedy policy  to update the current state S. In the final line $A\leftarrow A^{‘}$ , the same  action A’ selected previously (by $\epsilon$-greedy policy) for the update is used by the Agent to move to the next state .&lt;/p&gt;
 
@@ -270,7 +270,7 @@ S  C  C  C  C  C  C  C  C  C  C  G
 
 &lt;p&gt;We could see that  Q learning learns the best policy after an inital transient (Insert Image)&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../../images/qlearning_vs_sarsa.png&quot; alt=&quot;Qlearning VS Sarsa&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../images/qlearning_vs_sarsa.png&quot; alt=&quot;Qlearning VS Sarsa&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;learnt-policy&quot;&gt;Learnt Policy&lt;/h3&gt;
 
@@ -296,7 +296,7 @@ S  C  C  C  C  C  C  C  C  C  C  G
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;Here we can see , the agent goes to the top of the grid , takes a right and then reaches the Goal&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../../images/cliffwalkingpaths.JPG&quot; alt=&quot;Qlearning VS Sarsa&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../images/cliffwalkingpaths.JPG&quot; alt=&quot;Qlearning VS Sarsa&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;SARSA takes the longer, safer path going  to the top and then moving towards the Goal. However, Q learning takes the best action and takes the path near to the cliff, the optimal path (shortest) .
 sarsa is an onpolicy algorithm and it cannot afford to fall the cliff every time. So it takes a much safer path.&lt;/p&gt;
