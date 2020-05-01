@@ -180,6 +180,7 @@ The policy used to make the update and the one used to pick next action is the s
 
 From the  state ${S_t}$,the agent chooses  ${A_t}$  , collects a reward ${R_{t+1}}$ , and goes to the next state ${S_{t+1}}$. The agent chooses the next action ${A_{t+1}}$ based on its policy .We Collect the  backed up action values at $Q({S_{t+1}},{A_{t+1}})$ and use it to estimate action values of the former state action $Q({S_t},{A_t})$ by calculating the TD error - the difference between expected value- the current action value which in turn moves towards a better policy.  
 #### The sarsa Algorithm 
+
 ![SarsaAlgorithm][SarsaAlgorithm]
 
 It should be clear now that , in the line highlighted with Blue, the Agent chooses an action A' from next state state S' state  using the greedy policy  to update the current state S. In the final line $A\leftarrow A^{'}$ , the same  action A' selected previously (by $\epsilon$-greedy policy) for the update is used by the Agent to move to the next state .
@@ -228,6 +229,7 @@ Here,
 We will run both the Q learning and Sarsa on this enviornment to compare their performances.The jupyter notebook can be found [here](insert the link)
 
 We could see that  Q learning learns the best policy after an inital transient (Insert Image)
+
 
 ![Qlearning VS Sarsa][qlearnVsSarsa]
 
@@ -278,7 +280,7 @@ sarsa is an onpolicy algorithm and it cannot afford to fall the cliff every time
 [QlearningAlgorithm]:../../../images/QlearningAlgorithm.jpg
 [SarsaAlgorithm]:../../../images/sarsaAlgorithm.jpg
 [qlearnVsSarsa]:../../../images/qlearning_vs_sarsa.png
-[qlearnVsSarsapaths]:../../../images/cliffwalkingpaths.jpg
+[qlearnVsSarsapaths]:../../../images/cliffwalkingpaths.JPG
 [RLSetup]:../../../images/reinforcementlearningsetup.jpg
 
 
