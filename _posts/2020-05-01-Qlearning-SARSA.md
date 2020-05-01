@@ -189,7 +189,7 @@ It should be clear now that , in the line highlighted with Blue, the Agent choos
 
 Here we shall find a case study with Cliff Walker Enviornment . Here is the [jupyter notebook](https://github.com/mniju/RL-Algorithms/blob/master/Q-Learning%20and%20SARSA%20_%20EVSARSA.ipynb) comparision of Q learning and SARSA for the cliff walker enviornment.
 
-''' This is a simple implementation of the Gridworld Cliff
+` This is a simple implementation of the Gridworld Cliff
     reinforcement learning task.
 
     Adapted from Example 6.6 (page 132) from Reinforcement Learning: An Introduction
@@ -205,17 +205,17 @@ Here we shall find a case study with Cliff Walker Enviornment . Here is the [jup
         [3, 1..10] as the cliff at bottom-center
 
     Each time step incurs -1 reward, and stepping into the cliff incurs -100 reward
-    and a reset to the start. An episode terminates when the agent reaches the goal.'''
+    and a reset to the start. An episode terminates when the agent reaches the goal.`
 
 The enviornment is shown below
 
 
-```
+`
 o  o  o  o  o  o  o  o  o  o  o  o
 o  o  o  o  o  o  o  o  o  o  o  o
 o  o  o  o  o  o  o  o  o  o  o  o
 S  C  C  C  C  C  C  C  C  C  C  G
-```
+`
 
 Here,
 
@@ -240,23 +240,24 @@ The policy learnt by both the Q learning and SARSA can be compared.
 
 Q-Learning Actions
 
-```
+`
  >  >  >  >  >  >  >  v  v  >  v  v 
  >  >  >  >  >  >  >  >  >  >  >  v 
  >  >  >  >  >  >  >  >  >  >  >  v 
  S  C  C  C  C  C  C  C  C  C  C  G
-```
+
+`
 
 Here we can see from the starting point S, the policy goes to the immediate right and reaches the Goal.
 
 SARSA Actions
 
-```
+`
  >  >  >  >  >  >  >  >  >  >  >  v 
  ^  ^  ^  >  >  >  >  >  >  >  >  v 
  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  >  v 
  S  C  C  C  C  C  C  C  C  C  C  G
-```
+`
 Here we can see , the agent goes to the top of the grid , takes a right and then reaches the Goal
 
 ![Qlearning VS Sarsa][qlearnVsSarsapaths]
