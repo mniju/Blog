@@ -15,7 +15,7 @@ In General,Q learning is a *model free* learning .Its an off policy TD Control.
 
 In this post , We will see a  small RL Introduction , then into Qlearning and end with Qlearning & Sarsa Comparision. 
 
-The **jupyter notebook** comparision of Q learning and SARSA for the cliff walker enviornment can be found [here.]((https://github.com/mniju/RL-Algorithms/blob/master/Q-Learning%20and%20SARSA%20_%20EVSARSA.ipynb) ) 
+The **jupyter notebook** comparision of Q learning and SARSA for the cliff walker enviornment can be found [here.](https://github.com/mniju/RL-Algorithms/blob/master/Q-Learning%20and%20SARSA%20_%20EVSARSA.ipynb)
 
 ### Reinforcement Learning  Basic Setup
 
