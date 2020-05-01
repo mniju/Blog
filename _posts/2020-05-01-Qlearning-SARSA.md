@@ -6,7 +6,7 @@ categories: [RL]
 title: Notes on Q learniing
 ---
 
-# Notes on Q learning
+## Introduction
 
 **Q learning** - One of the sucessful techniques in Reinforcement Learning .It was initially introduced in *1989 by [Watkins](https://link.springer.com/article/10.1007/BF00992698)*.
 Q learning came to light whenDeepmind used it to [play Atari games](https://web.stanford.edu/class/psych209/Readings/MnihEtAlHassibis15NatureControlDeepRL.pdf) with superhuman perfomance   in 2015.
@@ -27,11 +27,11 @@ The Enviornment transitions from an older state  to a new **state** in reponse t
 
 **Policy:** defines the learning agents way of behaving at a given time.A policy is a Mapping from States to probability of selecting different actions.Its denoted by $$\pi$$.
 
-If the  agent is following policy $\pi$ at time t , then $\pi(a|s)$ is the probability that action $A_{t}$ = a if state,$S_{t}$ =s.The | sign in the middle stands for conditional probability.
+If the  agent is following policy $$\pi$$ at time t , then $$\pi(a|s)$$ is the probability that action $$A_{t}$$ = a if state,$$S_{t}$$ =s.The \| sign in the middle stands for conditional probability.
 
 **Reward** is the goal of the RL Problem. The objective  of the agent is to maximize the total rewards over time.
 
-The **State Value** for a state $s$ under policy $\pi$ denoted as $v_{\pi}(s)$ ,is defined as the Expected return when starting in $s$ and following $\pi$ thereafter.
+The **State Value** for a state $$s$$ under policy $$\pi$$ denoted as $$v_{\pi}(s)$$ ,is defined as the Expected return when starting in $$s$$ and following $$\pi$$ thereafter.
 
 $$
 v_{\pi}(s) = \mathbb{E}_{\pi} \left[ G_{t} | S_{t}=s  \right] = \mathbb{E}_{\pi}\left[ \sum_{k=0 }^{\infty}\gamma^{k}R_{t+k+1}|S_{t}=s \right] for\  all\  s \in S
@@ -39,16 +39,16 @@ $$
 The value of the state is the total amount of reward which the agent can accumulate over time.
 There will be a state value for each state.
 
-| State        | Value      | 
-| :-----------:|:----------:|
-| State1       | $v(s1)$    |
-| State2       | $v(s2)$    |
-| State3       | $v(s3)$    |
-| State4       | $v(s4)$    |
+| State        | Value        | 
+| :-----------:|:------------:|
+| State1       | $$v(s1)$$    |
+| State2       | $$v(s2)$$    |
+| State3       | $$v(s3)$$    |
+| State4       | $$v(s4)$$    |
 
 
 
-**Action value** is denoted as  $Q(s,a)$ is the expected return starting from state s, taking an action a and then following policy $\pi$.
+**Action value** is denoted as  $$Q(s,a)$$ is the expected return starting from state s, taking an action a and then following policy $$\pi$$.
 
 $$
 q_{\pi}(s,a) = \mathbb{E}_{\pi} \left[ G_{t} | S_{t}=s ,A_{t}=a \right] = \mathbb{E}_{\pi}\left[ \sum_{k=0 }^{\infty}\gamma^{k}R_{t+k+1}|S_{t}=s ,A_{t}=a \right] 
@@ -61,18 +61,18 @@ Lets say , we have four states and 3 possibe actions for each state,then it can 
 
 | State/Actions | Action1       | Action2    |Action3    |
 | :-----------: |:-------------:| :---------:|:---------:|
-| State1        | $Q(s1,a1)$    | $Q(s1,a2)$ |$Q(s1,a3)$ |
-| State2        | $Q(s2,a1)$    | $Q(s2,a2)$ |$Q(s2,a3)$ |
-| State3        | $Q(s3,a1)$    | $Q(s3,a2)$ |$Q(s3,a3)$ |
-| State4        | $Q(s4,a1)$    | $Q(s4,a2)$ |$Q(s4,a3)$ |
+| State1        | $$Q(s1,a1)$$    | $$Q(s1,a2)$$ |$$Q(s1,a3)$$ |
+| State2        | $$Q(s2,a1)$$    | $$Q(s2,a2)$$ |$$Q(s2,a3)$$ |
+| State3        | $$Q(s3,a1)$$    | $$Q(s3,a2)$$ |$$Q(s3,a3)$$ |
+| State4        | $$Q(s4,a1)$$    | $$Q(s4,a2)$$ |$$Q(s4,a3)$$ |
 
-As shown in the  table above There is a action value  $Q$  for all the actions in  a state unlike the Value function $V$ that has a value just each state.when the model is not available, the Q values helps to choose the next best action from that state.
+As shown in the  table above There is a action value  $$Q$$  for all the actions in  a state unlike the Value function $$V$$ that has a value just each state.when the model is not available, the Q values helps to choose the next best action from that state.
 
 ### Model Based Vs Model Free
 
 
 Model Free means that we do not learn the model of the enviornment. We do not learn complete map of the domain.
-We do not learn the Probability Transition from one state to another state. $P(S^{'}| S,a)$.
+We do not learn the Probability Transition from one state to another state. $$P(S^{'}| S,a)$$.
 
 Although we need a model , we need the model to generate only sample transitions, not the complete probability distributions of all possible transitions.
 
@@ -118,9 +118,9 @@ V({S_t}) \leftarrow V({S_t}) + \alpha \left[{R_{t+1}} + \gamma V({S_{t+1}}) - V(
 
 $$  
 
-Here $V({S_t})$ is the estimated value and $V({S_{t+1}})$ is the successor state , ${R_{t+1}}$ is the reward collected and the computed backedup value is ${R_{t+1}} + \gamma V({S_{t+1}})$
+Here $$V({S_t})$$ is the estimated value and $$V({S_{t+1}})$$ is the successor state , $${R_{t+1}}$$ is the reward collected and the computed backedup value is $${R_{t+1}} + \gamma V({S_{t+1}})$$
 
-The Error between the estimated value of $S_{t}$ and the better estimate ${R_{t+1}} + \gamma V({S_{t+1}}) - V({S_t})$  is called TD error $\delta$.
+The Error between the estimated value of $$S_{t}$$ and the better estimate $${R_{t+1}} + \gamma V({S_{t+1}}) - V({S_t})$$  is called TD error $$\delta$$.
 $$
 \delta_{t} = {R_{t+1}} + \gamma V({S_{t+1}}) - V({S_t})
 $$
@@ -155,7 +155,7 @@ Q({S_t},{A_t}) \leftarrow Q({S_t},{A_t}) + \alpha \left[{R_{t+1}} + \gamma \unde
 $$  
 
 
-In Q learning ,we force the target policy $Q(S,A)$  to move towards the optimal $q^{*}$  by acting  greedily ($\underset{a}{max} Q({S_{t+1}},a)$) in that state . We dont follow that greedy action .The update is made assuming we follow the greedy behaviour.-Similiar to asking the question.. What is the estimate of $Q({S_t},{A_t})$ if we take a greedy action at this state ${S_{t+1}}$.We collect rewards  $R_{t+1}$ for the initial action ${A_{t}}$ and compute the backedup action values for $Q({S_{t+1}},a)$, and use it to estimate the values at $Q({S_t})$
+In Q learning ,we force the target policy $$Q(S,A)$$  to move towards the optimal $$q^{*}$$  by acting  greedily ($$\underset{a}{max} Q({S_{t+1}},a)$$) in that state . We dont follow that greedy action .The update is made assuming we follow the greedy behaviour.-Similiar to asking the question.. What is the estimate of $$Q({S_t},{A_t})$$ if we take a greedy action at this state $${S_{t+1}}$$.We collect rewards  $$R_{t+1}$$ for the initial action $${A_{t}}$$ and compute the backedup action values for $$Q({S_{t+1}},a)$$, and use it to estimate the values at $$Q({S_t})$$
 
 Since both the policies are different , Q learning is  Off policy
 
@@ -163,7 +163,7 @@ Since both the policies are different , Q learning is  Off policy
 
 ![QlearningAlgorithm][QlearningAlgorithm]
 
-It should be clear from above that , for each estimate of Q at state $S_{t}$ , Q learning uses the maximum action value of the the state $S_{t+1}$ (Highlighted in blue).However, the next action is always derived by a different policy such as  $\epsilon$-greedy (Highlighted in Green)
+It should be clear from above that , for each estimate of Q at state $$S_{t}$$ , Q learning uses the maximum action value of the the state $$S_{t+1}$$ (Highlighted in blue).However, the next action is always derived by a different policy such as  $$\epsilon$$-greedy (Highlighted in Green)
 
 To be  more clear , the item highlighted in blue is used to update an estimate of the Q values.But the maximum action value is not used for the next action.Its done in other way highlighted in Green
 
@@ -181,17 +181,17 @@ Q({S_t},{A_t}) \leftarrow Q({S_t},{A_t}) + \alpha \left[{R_{t+1}} + \gamma Q({S_
 
 $$  
 
-We use the backed up action values at next state $Q({S_{t+1}},{A_{t+1}})$ to re-estimate the values at state $Q({S_t},{A_t})$
+We use the backed up action values at next state $$Q({S_{t+1}},{A_{t+1}})$$ to re-estimate the values at state $$Q({S_t},{A_t})$$
 
 In SARSA the updates are made assuming we follow the actions defined by the policy - We dont have a seperate greedy policy for the updates. as in Q learning.
 The policy used to make the update and the one used to pick next action is the same.Thus SARSA is *online*.
 
-From the  state ${S_t}$,the agent chooses  ${A_t}$  , collects a reward ${R_{t+1}}$ , and goes to the next state ${S_{t+1}}$. The agent chooses the next action ${A_{t+1}}$ based on its policy .We Collect the  backed up action values at $Q({S_{t+1}},{A_{t+1}})$ and use it to estimate action values of the former state action $Q({S_t},{A_t})$ by calculating the TD error - the difference between expected value- the current action value which in turn moves towards a better policy.  
+From the  state $${S_t}$$,the agent chooses  $${A_t}$$  , collects a reward $${R_{t+1}}$$ , and goes to the next state $${S_{t+1}}$$. The agent chooses the next action $${A_{t+1}}$$ based on its policy .We Collect the  backed up action values at $$Q({S_{t+1}},{A_{t+1}})$$ and use it to estimate action values of the former state action $$Q({S_t},{A_t})$$ by calculating the TD error - the difference between expected value- the current action value which in turn moves towards a better policy.  
 #### The sarsa Algorithm 
 
 ![SarsaAlgorithm][SarsaAlgorithm]
 
-It should be clear now that , in the line highlighted with Blue, the Agent chooses an action A' from next state state S' state  using the greedy policy  to update the current state S. In the final line $A\leftarrow A^{'}$ , the same  action A' selected previously (by $\epsilon$-greedy policy) for the update is used by the Agent to move to the next state .
+It should be clear now that , in the line highlighted with Blue, the Agent chooses an action A' from next state state S' state  using the greedy policy  to update the current state S. In the final line $$A\leftarrow A^{'}$$ , the same  action A' selected previously (by $$\epsilon$$-greedy policy) for the update is used by the Agent to move to the next state .
 
 ### Case Study : Cliff Walker Enviornment
 
@@ -274,7 +274,7 @@ SARSA takes the longer, safer path going  to the top and then moving towards the
 sarsa is an onpolicy algorithm and it cannot afford to fall the cliff every time. So it takes a much safer path.
 
 
-### Some Links that are Useful 
+## Some Links that are Useful 
 
 1. Reinforcement Learning An introduction by Richard Sutton and Andrew Barto
 2. [OnPolicy Vs Off Policy](https://stats.stackexchange.com/questions/184657/what-is-the-difference-between-off-policy-and-on-policy-learning) 
