@@ -1,9 +1,9 @@
 ---
-toc: true
+toc: false
 layout: post
 description: An Intro To Q learning 
-categories: [markdown]
-title: An Example Markdown Post
+categories: [RL]
+title: Notes on Q learniing
 ---
 
 # Notes on Q learning
@@ -25,9 +25,9 @@ The Enviornment transitions from an older state  to a new **state** in reponse t
 
 ### State Value and Action Value.
 
-**Policy:** defines the learning agents way of behaving at a given time.A policy is a Mapping from States to probability of selecting different actions.Its denoted by $\pi$.
+**Policy:** defines the learning agents way of behaving at a given time.A policy is a Mapping from States to probability of selecting different actions.Its denoted by $$\pi$$.
 
-If the  agent is following policy $\pi$ at time t , then $\pi(a|s)$ is the probability that action $A_{t}$ = a if state,$S_{t}$ =s.'|' in the middle stands for conditional probability.
+If the  agent is following policy $\pi$ at time t , then $\pi(a|s)$ is the probability that action $A_{t}$ = a if state,$S_{t}$ =s.The | sign in the middle stands for conditional probability.
 
 **Reward** is the goal of the RL Problem. The objective  of the agent is to maximize the total rewards over time.
 
@@ -286,11 +286,11 @@ sarsa is an onpolicy algorithm and it cannot afford to fall the cliff every time
 8. [RL Intro -lilianweng.github.io](https://lilianweng.github.io/lil-log/2018/02/19/a-long-peek-into-reinforcement-learning.html#model-transition-and-reward)
 9. [Good RL Series by Massimiliano](https://mpatacchiola.github.io/blog/2016/12/09/dissecting-reinforcement-learning.html)
 
-[QlearningAlgorithm]:../../../images/QlearningAlgorithm.jpg
-[SarsaAlgorithm]:../../../images/sarsaAlgorithm.jpg
-[qlearnVsSarsa]:../../../images/qlearning_vs_sarsa.png
-[qlearnVsSarsapaths]:../../../images/cliffwalkingpaths.JPG
-[RLSetup]:../../../images/reinforcementlearningsetup.jpg
+[QlearningAlgorithm]:../../../../images/QlearningAlgorithm.jpg
+[SarsaAlgorithm]:../../../../images/sarsaAlgorithm.jpg
+[qlearnVsSarsa]:../../../../images/qlearning_vs_sarsa.png
+[qlearnVsSarsapaths]:../../../../images/cliffwalkingpaths.JPG
+[RLSetup]:../../../../images/reinforcementlearningsetup.jpg
 
 
 
