@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://mniju.github.io/Blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mniju.github.io/Blog/" rel="alternate" type="text/html" /><updated>2020-05-01T05:01:50-05:00</updated><id>https://mniju.github.io/Blog/feed.xml</id><title type="html">fastpages</title><subtitle>An easy to use blogging platform with support for Jupyter Notebooks.</subtitle><entry><title type="html">Qlearning Sarsa</title><link href="https://mniju.github.io/Blog/2020/05/01/Qlearning-SARSA.html" rel="alternate" type="text/html" title="Qlearning Sarsa" /><published>2020-05-01T00:00:00-05:00</published><updated>2020-05-01T00:00:00-05:00</updated><id>https://mniju.github.io/Blog/2020/05/01/Qlearning-SARSA</id><content type="html" xml:base="https://mniju.github.io/Blog/2020/05/01/Qlearning-SARSA.html">&lt;h1 id=&quot;notes-on-q-learning&quot;&gt;Notes on Q learning&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://mniju.github.io/Blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mniju.github.io/Blog/" rel="alternate" type="text/html" /><updated>2020-05-01T05:21:02-05:00</updated><id>https://mniju.github.io/Blog/feed.xml</id><title type="html">fastpages</title><subtitle>An easy to use blogging platform with support for Jupyter Notebooks.</subtitle><entry><title type="html">Qlearning Sarsa</title><link href="https://mniju.github.io/Blog/2020/05/01/Qlearning-SARSA.html" rel="alternate" type="text/html" title="Qlearning Sarsa" /><published>2020-05-01T00:00:00-05:00</published><updated>2020-05-01T00:00:00-05:00</updated><id>https://mniju.github.io/Blog/2020/05/01/Qlearning-SARSA</id><content type="html" xml:base="https://mniju.github.io/Blog/2020/05/01/Qlearning-SARSA.html">&lt;h1 id=&quot;notes-on-q-learning&quot;&gt;Notes on Q learning&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;Q learning&lt;/strong&gt; - One of the sucessful techniques in Reinforcement Learning .It was initially introduced in &lt;em&gt;1989 by &lt;a href=&quot;https://link.springer.com/article/10.1007/BF00992698&quot;&gt;Watkins&lt;/a&gt;&lt;/em&gt;.
 Q learning came to light whenDeepmind used it to &lt;a href=&quot;https://web.stanford.edu/class/psych209/Readings/MnihEtAlHassibis15NatureControlDeepRL.pdf&quot;&gt;play Atari games&lt;/a&gt; with superhuman perfomance   in 2015.&lt;/p&gt;
@@ -249,12 +249,11 @@ and a reset to the start. An episode terminates when the agent reaches the goal.
 
 &lt;p&gt;The enviornment is shown below&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;
-o  o  o  o  o  o  o  o  o  o  o  o
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;o  o  o  o  o  o  o  o  o  o  o  o
 o  o  o  o  o  o  o  o  o  o  o  o
 o  o  o  o  o  o  o  o  o  o  o  o
 S  C  C  C  C  C  C  C  C  C  C  G
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Here,&lt;/p&gt;
 
@@ -279,69 +278,23 @@ S  C  C  C  C  C  C  C  C  C  C  G
 
 &lt;p&gt;Q-Learning Actions&lt;/p&gt;
 
-&lt;p&gt;`&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;blockquote&gt;
-    &lt;blockquote&gt;
-      &lt;blockquote&gt;
-        &lt;blockquote&gt;
-          &lt;blockquote&gt;
-            &lt;blockquote&gt;
-              &lt;p&gt;v  v  &amp;gt;  v  v&lt;/p&gt;
-              &lt;blockquote&gt;
-                &lt;blockquote&gt;
-                  &lt;blockquote&gt;
-                    &lt;blockquote&gt;
-                      &lt;p&gt;v 
- v 
- S  C  C  C  C  C  C  C  C  C  C  G&lt;/p&gt;
-                    &lt;/blockquote&gt;
-                  &lt;/blockquote&gt;
-                &lt;/blockquote&gt;
-              &lt;/blockquote&gt;
-            &lt;/blockquote&gt;
-          &lt;/blockquote&gt;
-        &lt;/blockquote&gt;
-      &lt;/blockquote&gt;
-    &lt;/blockquote&gt;
-  &lt;/blockquote&gt;
-&lt;/blockquote&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  v  v  &amp;gt;  v  v 
+ &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  v 
+ &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  v 
+ S  C  C  C  C  C  C  C  C  C  C  G
 
-&lt;p&gt;`&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Here we can see from the starting point S, the policy goes to the immediate right and reaches the Goal.&lt;/p&gt;
 
 &lt;p&gt;SARSA Actions&lt;/p&gt;
 
-&lt;p&gt;`&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;blockquote&gt;
-    &lt;blockquote&gt;
-      &lt;blockquote&gt;
-        &lt;blockquote&gt;
-          &lt;blockquote&gt;
-            &lt;blockquote&gt;
-              &lt;blockquote&gt;
-                &lt;blockquote&gt;
-                  &lt;blockquote&gt;
-                    &lt;blockquote&gt;
-                      &lt;p&gt;v 
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  v 
  ^  ^  ^  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  &amp;gt;  v 
  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  &amp;gt;  v 
  S  C  C  C  C  C  C  C  C  C  C  G
-`
-Here we can see , the agent goes to the top of the grid , takes a right and then reaches the Goal&lt;/p&gt;
-                    &lt;/blockquote&gt;
-                  &lt;/blockquote&gt;
-                &lt;/blockquote&gt;
-              &lt;/blockquote&gt;
-            &lt;/blockquote&gt;
-          &lt;/blockquote&gt;
-        &lt;/blockquote&gt;
-      &lt;/blockquote&gt;
-    &lt;/blockquote&gt;
-  &lt;/blockquote&gt;
-&lt;/blockquote&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Here we can see , the agent goes to the top of the grid , takes a right and then reaches the Goal&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;../../../images/cliffwalkingpaths.JPG&quot; alt=&quot;Qlearning VS Sarsa&quot; /&gt;&lt;/p&gt;
 
