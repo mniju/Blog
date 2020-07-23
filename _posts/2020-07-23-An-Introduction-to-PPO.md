@@ -2,7 +2,7 @@
 toc: false
 layout: post
 description: An Introduction to PPO 
-categories: [Reinforcement Learning][PPO][Proximal Policy OPtimization][Ploicy Gradients]
+categories: [Proximal Policy OPtimization]
 title: An Introduction to PPO 
 ---
 
