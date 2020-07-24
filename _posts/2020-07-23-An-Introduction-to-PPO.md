@@ -2,7 +2,7 @@
 toc: false
 layout: post
 description: An Introduction to PPO 
-categories: [Proximal Policy Optimization,PPO,Reinforcement Learning]
+categories: [Proximal Policy Optimization]
 title: An Introduction to PPO 
 ---
 
@@ -544,7 +544,7 @@ This Model is wrapped with another Class Policy to call in the Model in two diff
 
 1. When in Collecting partial Trajectories 
 
-            This is called partial trajectories as we wont collect the trajectory until the end. But we just collect a fixed set of  tuples {actions, log_probabilities,values} for the policy
+    This is called partial trajectories as we wont collect the trajectory until the end. But we just collect a fixed set of  tuples {actions, log_probabilities,values} for the policy
 
 ```python
 if not training:
@@ -567,7 +567,7 @@ if not training:
 
  2. When in training 
 
-        We just return the action distribution along with the values. This will be called when making every step update.
+    Just return the action distribution along with the values. This will be called when making every step update.
 
 ```python
 else: 
