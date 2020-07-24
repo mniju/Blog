@@ -2,7 +2,7 @@
 toc: false
 layout: post
 description: An Introduction to PPO 
-categories: [Proximal Policy OPtimization]
+categories: [Proximal Policy Optimization,PPO,Reinforcement Learning]
 title: An Introduction to PPO 
 ---
 
@@ -15,7 +15,7 @@ PPO stands for *Proximal Policy Optimization*. Its a Policy gradient method for 
 
 Paper: [https://arxiv.org/pdf/1707.06347.pdf](https://arxiv.org/pdf/1707.06347.pdf)
 
-Here I cover the basic RL setup , then explain Policy Gradients and then using it to build the Intuition for Importance sampling and then the Policy Bounding. Some math equations are covered as it cant be avoided altogether to understand Policy gradient and PPO .
+Here I cover the basic RL setup , then explain Policy Gradients and then using it to build the Intuition for Importance sampling and then the Policy Bounding. Basic math equations are covered as it cant be avoided altogether to understand Policy gradient and PPO .
 
 ### RL Setup:
 
@@ -77,9 +77,11 @@ $$
 
 **Using Log Derivative Trick**
 
-Mathematical **[expectation](https://www.statisticssolutions.com/directory-of-statistical-analyses-mathematical-expectation/),** also known as the **expected value**, is the summation or integration of a possible values from a random variable. It is also known as the product of the probability of an event occurring, denoted P(x), and the value corresponding with the actual observed occurrence of the event
+Mathematical **[expectation](https://www.statisticssolutions.com/directory-of-statistical-analyses-mathematical-expectation/),** also known as the **expected value**, is the summation or integration of a possible values from a random variable. It is also known as the product of the probability of an event occurring, and the value corresponding with the actual observed occurrence of the event
 
-The Expectation of $$x$$ under distribution $$p(x)$$ 
+So the expected value is the sum of: [(each of the possible outcomes) × (the probability of the outcome occurring)].
+
+The Expectation of $$f(x)$$  where x is a random variable ,under the distribution $$p$$ 
 
 $$
 \mathbb{E}_{x\sim p(x)}\left[ f(x)\right] = \int p(x)f(x)dx
@@ -109,7 +111,7 @@ $$
 \triangledown_\theta \mathbb E \left[ f(x)\right]= \mathbb E \left[ f(x) \bigtriangledown_\theta logp_\theta(x)\right] \dashrightarrow(2)
 $$
 
- Next want to find the log probability of the trajectory $$\tau$$ (yes, we are replacing a value x with Trajectory $$\tau$$)
+ We will replace the x with the trajectory $$\tau$$ .Next step is to  find the log probability of the trajectory $$\tau$$.
 
  **Computation of  $$log p_\theta(\tau)$$**
 
@@ -147,7 +149,7 @@ The Expectation of the rewards over the trajectory following the policy $$\pi$$
 
 This is the ***Objective*** in Policy Gradient problem
 
- [Karpathy](http://karpathy.github.io/2016/05/31/rl/) explains this well in his blog post,
+ As expained in [Pong From Pixels](http://karpathy.github.io/2016/05/31/rl/)
 
 *This equation is telling us how we should shift the distribution (through its parameters $$\theta$$) if we wanted its samples to achieve higher scores, as judged by the Reward Function. It’s telling us that we should take this direction given by gradient of $$\log
 \pi_\theta(a_t|s_t)$$ (which is a vector that gives the direction in the parameter space $$\theta$$) and multiply onto it the scalar-valued score Rewards. This will make it so that samples that have a higher score will “tug” on the probability density stronger than the samples that have lower score, so if we were to do an update based on several samples from p the probability density would shift around in the direction of higher scores, making highly-scoring samples more likely.*
@@ -205,9 +207,9 @@ From [Wikepdia](https://en.wikipedia.org/wiki/Importance_sampling#:~:text=In%20s
 
 > In statistics, importance sampling is a general technique for estimating properties of a particular distribution, while only having samples generated from a different distribution than the distribution of interest.
 
-Here,Writing Expectation of $$x$$ under distribution $$p(x)$$ in terms of distribution under $$q(x)$$
+ Expectation of random variable $$f(x)$$ under distribution $$p$$ in terms of distribution under $$q$$
 
-The Expectation of $$x$$ under distribution $$p(x)$$ 
+The Expectation of a random variable $$f(x)$$ under distribution $$p$$ 
 
 $$
 \mathbb{E}_{x\sim p(x)}\left[ f(x)\right] = \int p(x)f(x)dx
@@ -225,13 +227,13 @@ $$
 = \int {q(x)} \frac {p(x)} {q(x)}  f(x)dx
 $$
 
-This is equal to the Expectation under distribution $$q(x)$$ given by 
+This is equal to the Expectation under distribution $$q$$ given by 
 
 $$
 \mathbb{E}_{x\sim p(x)}\left[ f(x)\right]=\mathbb{E}_{x\sim q(x)}\left[ \frac {p(x)}{q(x)} f(x)\right] 
 $$
 
-So Expectation under $$p(x)$$ for $$f(x)$$ is equal to the Expectation under $$q(x)$$ with the ratio  $$\frac {p(x)}{q(x)}$$ times $$f(x)$$
+So Expectation under $$p$$ for $$f(x)$$ is equal to the Expectation under $$q$$ with the ratio  $$\frac {p(x)}{q(x)}$$ times $$f(x)$$
 
 Plugging this for the old policy distribution $$\overline \pi(\tau)$$, The objective becomes
 
