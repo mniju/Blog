@@ -4,10 +4,6 @@ title: About Me
 permalink: /about/
 ---
 
-This is where you put the contents of your *About* page. Like all your pages, it's in [Markdown](https://guides.github.com/features/mastering-markdown/) format.
-
-This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
-
-
-
-[^1]:a blogging platform that natively supports Jupyter notebooks in addition to other formats.
+My name is Niju Michael Nicholas.I am an Electrical Engineer by graduation , by profession an  Instrumentation and Test Automation Engineer . An avid  AI enthusiasist and more specifically into RL where Robotics meets Artificial Intelligence.
+I occassionaly blog here when i organise some notes when stumble on new ideas/subjects.
+You can reach me at : <niju.nicholas@gmail.com>
