@@ -540,7 +540,7 @@ CS285:<a href="https://youtu.be/Ds1trXd6pos?t=3415">https://youtu.be/Ds1trXd6pos
 
 <p><a href="https://cs.uwaterloo.ca/~ppoupart/teaching/cs885-spring18/slides/cs885-lecture15b.pdf">https://cs.uwaterloo.ca/~ppoupart/teaching/cs885-spring18/slides/cs885-lecture15b.pdf</a></p>
 
-<p>We can see that the ratio r is clipped between $1+\epsilon$ and $1-\epsilon$ where $\epsilon$ is the clipping hyperparameter</p>
+<p>We can see that the ratio r is clipped between <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>+</mo><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">1+\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ϵ</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>−</mo><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">1-\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ϵ</span></span></span></span> where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ϵ</span></span></span></span> is the clipping hyperparameter</p>
 
 <p>The Clipped objective is :</p>
 
@@ -558,9 +558,10 @@ CS285:<a href="https://youtu.be/Ds1trXd6pos?t=3415">https://youtu.be/Ds1trXd6pos
 
 <p>When we use PPO network in an architecture like Actor Critic , (where Policy is actor and Value is critic ) , we use the following in the objective</p>
 
-<p>1.Clipped rewards(Surrogate Function)</p>
-
 <ol>
+  <li>
+    <p>Clipped rewards(Surrogate Function)</p>
+  </li>
   <li>
     <p>Squared Error Loss (Critic)</p>
   </li>
