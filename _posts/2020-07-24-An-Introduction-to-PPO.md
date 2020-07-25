@@ -358,7 +358,6 @@ So what about the constraint/Bounds?
 
 As seen from the above equation, $$L_\pi(\pi')$$ is the Surrogate Objective. We maximize that surrogate objective , so as to reduce absolute value in the Left hand of the below  equation. We do it such a way to keep the KL divergence in some limits.
 
-|New Policy - (Old Policy + Objective that is Maximized )| ≤  C * *KL divergence* between two policies
 
 ![PPO_Images/Untitled%209.png](../../../../images/PPO_Images/Untitled%209.png)
 
@@ -418,8 +417,7 @@ $$
 L^{KLPEN}(\theta)= \mathbb{\hat E}_t\left[ \frac {\pi_{\theta}(s_t,a_t)}{ \pi_{\theta_{old}}(s_t,a_t)} \hat A  - \beta  KL\left[ {\pi_{\theta_{old}}(\cdot|s_t)},{ \pi_{\theta}(\cdot|s_t)} \right]\right]
 $$
 
-TRPO(Primal Dual descence strategy) alternates between update the policy parameters and Lagrange multipliers in the same optimization update iteration .However In PPO we keep the penalty coefficient constant for the whole section of optimization and then afterwards modify it 
-
+TRPO(Primal Dual descence strategy) alternates between update the policy parameters and Lagrange multipliers in the same optimization update iteration .However In PPO we keep the penalty coefficient constant for the whole section of optimization and then afterwards modify it. 
 Compute $$d = \mathbb{\hat E}_t\left[ KL\left[ {\pi_{\theta_{old}}(\cdot|s_t)},{ \pi_{\theta}(\cdot|s_t)}\right] \right]$$ 
 
 If $$d>d_{targ}\times1.5,\beta \leftarrow \beta \times 2$$. The KL divergence is larger than the target value . Increase the Penalty Coefficient 
