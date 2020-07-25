@@ -13,18 +13,18 @@ title: An Introduction to PPO
 
 PPO stands for *Proximal Policy Optimization*. Its a Policy gradient method for Reinforcement Learning(RL). It has much better performance than the TRPO (Trust Region Policy Optimization) but very simpler to Implement, more general and have better sample complexity.
 
-Paper: [https://arxiv.org/pdf/1707.06347.pdf](https://arxiv.org/pdf/1707.06347.pdf)
+PPO Paper: [https://arxiv.org/pdf/1707.06347.pdf](https://arxiv.org/pdf/1707.06347.pdf)
 
-Here I cover the basic RL setup , then explain Policy Gradients and then using it to build the Intuition for Importance sampling and then the Policy Bounding. Basic math equations are covered as it cant be avoided altogether to understand Policy gradient and PPO .
+Firstly, we see  the basic RL setup , then explain Policy Gradients and then show the application of Importance sampling and  finally the need for Policy Bounding. Basic math equations are covered as it cant be avoided altogether to understand Policy gradient and PPO .
 
-### RL Setup:
+### Reinforcemet Learning Setup:
 
 A standard RL setup consists of 
 
 - Agent
 - Environment
 
-The Agent Interacts with the Environment by taking an action and collects the rewards and observes the next state of the environment. The environment is assumed to be fully observable so that we can formulate this as MDP.
+The Agent Interacts with the Environment by taking an action and collects the rewards and observes the next state of the environment. The environment is assumed to be fully observable so that we can formulate this as Markov Decision Process.(MDP)
 
 ![PPO_Images/Untitled.png](../../../../images/PPO_Images/Untitled.png)
 
@@ -36,7 +36,7 @@ observation, reward,_ = env.step(action)
  
 
 The Agent interacts with the environment in discrete timesteps 't'.
-For each time step, the agent receives an observation $$s_t$$ , selects an action $$a_t$$ ,following the policy $$\pi(a_t|s_t)$$ . The Agent receives a scalar reward $$r_t$$ and transitions to the next state $$s_{t+1}$$
+For each time step, the agent receives an observation $$s_t$$ , selects an action $$a_t$$ ,following the policy(probability of chossing action 'a' given state 's') $$\pi(a_t|s_t)$$ . The Agent receives a scalar reward $$r_t$$ and transitions to the next state $$s_{t+1}$$
 
 Policy $$\pi$$ is the mapping of the probability of different actions for a state
 
@@ -45,7 +45,7 @@ The Returns from a state is defined as the sum of discounted future Rewards
 $$
 R_t = \sum ^T_ {i=t} \gamma^{(i-t)}r(s_i,a_i)
 $$
-
+Here $$\gamma$$ is the [discount factor](https://stats.stackexchange.com/questions/221402/understanding-the-role-of-the-discount-factor-in-reinforcement-learning#:~:text=The%20discount%20factor%20essentially%20determines,those%20in%20the%20immediate%20future.&text=If%20γ%3D1%2C%20the%20agent,all%20of%20its%20future%20rewards.)
 The Objective of Reinforcement Learning is to **Maximize Returns.** That's it !
 
 ### Policy Gradients:
@@ -81,7 +81,7 @@ Mathematical **[expectation](https://www.statisticssolutions.com/directory-of-st
 
 So the expected value is the sum of: [(each of the possible outcomes) × (the probability of the outcome occurring)].
 
-The Expectation of $$f(x)$$  where x is a random variable ,under the distribution $$p$$ 
+The Expectation of $$f(x)$$  under the distribution $$p$$ 
 
 $$
 \mathbb{E}_{x\sim p(x)}\left[ f(x)\right] = \int p(x)f(x)dx
@@ -243,7 +243,7 @@ $$
 
 ---
 
- **Short Recap:**
+ **Quick Recap:**
 
 The original Objective
 
@@ -251,7 +251,7 @@ $$
 J(\theta) = \mathbb{E}_{\tau\sim \pi_\theta(\tau)}\left[ r(\tau)\right] 
 $$
 
-Estimating for the new parameters $\theta$' with Importance Sampling
+Estimating for the new parameters $$\theta$$' with Importance Sampling
 
 $$
 J(\theta)' = \mathbb{E}_{\tau\sim \pi_\theta(\tau)}\left[ \frac {\pi_{\theta'}(\tau)}{ \pi_\theta(\tau)} r(\tau)\right] 
@@ -307,13 +307,11 @@ This also means , we may need more sample data if the ratio is far from 1.
 
 **Unstable** **Step Updates:**
 
-The trajectories generated with the old policy , they may be having the states, that are not that interesting. May be they all have lesser rewards then that of the current Policy.
-
-The new policy is dependent on the old policy 
+The trajectories generated with the old policy , they may be having the states, that are not that interesting. May be they all have lesser rewards then that of the current Policy.But the new policy is dependent on the old policy 
 
 We need to use the old policy and make confident updates when we take a gradient step
 
-Make the step small updates
+ step updates options
 
 1. Too large step means, performance Collapse
 2. Too small ,progress very slow.
@@ -333,7 +331,7 @@ We need to find a policy update, that reflects the underlying structure of the p
 
 ### Policy Bounds
 
-Somehow we should bound this difference between these distributions (ie) the Old policy distribution $\pi_\theta$ and new policy $$\pi_{\theta'}$$ distribution . 
+Somehow we should bound this difference between these distributions (ie) the Old policy distribution $$\pi_\theta$$ and new policy $$\pi_{\theta'}$$ distribution . 
 
 We want an update step that is:
 
@@ -342,7 +340,7 @@ We want an update step that is:
 
 **Relative Policy Performance Bounds**:
 
-We need to check the performance of one policy to  the performance of another policy.
+For this ,we check the performance of one policy to  the performance of another policy and check that they are in specific bounds
 
 As explained [in this Lecture](https://youtu.be/ycCtmp4hcUs?t=850)
 
@@ -352,7 +350,7 @@ As explained [in this Lecture](https://youtu.be/ycCtmp4hcUs?t=850)
 
 $$L_\pi(\pi')$$ is our new  objective. We call this a surrogate objective.
 
-Now,We can use trajectories sampled from the old policy along with the Advantage calculated from the old policy Trajectory. Still we need the new policy action probability , however we don't want to rollout for the new policy to collect the rewards.
+Now,We can use trajectories sampled from the old policy along with the Advantage calculated from the old policy Trajectory. Still we need the new policy action probability , however __we don't want to rollout for the new policy to collect the rewards__.
 
 So what about the constraint/Bounds?
 
@@ -361,7 +359,7 @@ As seen from the above equation, $$L_\pi(\pi')$$ is the Surrogate Objective. We 
 
 ![PPO_Images/Untitled%209.png](../../../../images/PPO_Images/Untitled%209.png)
 
-The policies should be bound by KL divergence. If policies are close in KL-divergence - the approximation is good !
+The policies should be bound by KL divergence. If KL divergence of two policies are less, they are close in Policy space
 
 **Kullback-Leibler Divergence:**
 
@@ -372,8 +370,6 @@ D​_{KL​​}(p∣∣q)=\sum _{i=1}^N p(x_i​​)⋅(log p(x​_i​​)−lo
 $$
 
 Its the expectation of the Logarithmic difference between the two probabilities P and Q.
-
-![PPO_Images/Untitled%2010.png](../../../../images/PPO_Images/Untitled%2010.png)
 
 KL Divergence of Two policies $$\pi_1\space and\space \pi_2\space$$ can be written as
 
@@ -395,17 +391,17 @@ With [Lagrangian Dual](https://people.cs.umass.edu/~domke/courses/sml/07lagrange
 
 $$\underset{\theta}maximize\ \mathbb{\hat E}_t\left[ \frac {\pi_{\theta}(s_t,a_t)}{ \pi_{\theta_{old}}(s_t,a_t)} \hat A_t  - \beta  KL\left[ {\pi_{\theta_{old}}(\cdot|s_t)},{ \pi_{\theta}(\cdot|s_t)} \right]\right]$$
 
-Here penalty coefficient $\beta$ is constant value,Natural Policy Gradient is used , and additionally the computational Intensive Hessian Matrix.
+Here penalty coefficient $$\beta$$ is constant value,Natural Policy Gradient is used , and additionally the computational Intensive Hessian Matrix has to be calculated.
 
 ![PPO_Images/Untitled%2011.png](../../../../images/PPO_Images/Untitled%2011.png)
 
 [http://rail.eecs.berkeley.edu/deeprlcourse-fa17/f17docs/lecture_13_advanced_pg.pdf](http://rail.eecs.berkeley.edu/deeprlcourse-fa17/f17docs/lecture_13_advanced_pg.pdf)
 
-TRPO is explained in may places . This  [blog](https://medium.com/@jonathan_hui/rl-trust-region-policy-optimization-trpo-explained-a6ee04eeeee9) by Jonathan Hui explains more clearly.
+More details on TRPO in this  [medium post](https://medium.com/@jonathan_hui/rl-trust-region-policy-optimization-trpo-explained-a6ee04eeeee9) by Jonathan Hui
 
 ## Proximal Policy Optimization:
 
-As in TRPO we try to constraint the new policy near to the old policy but ,without computing Natural Gradient. There are two variants.
+In PPO we try to constraint the new policy near to the old policy but ,without computing Natural Gradient. There are two variants.
 
 - **Adaptive KL Penalty**
 
@@ -495,7 +491,7 @@ I will just highlight few items here.
 
 ### Network Architecture:
 
-The networks should use Orthogonal initialisation with parameter $\sqrt2$ and biases zero.
+Its suggested to use Orthogonal initialisation with parameter $$\sqrt2$$ and biases zero.
 
 ```python
 def layer_init(layer, std=np.sqrt(2), bias_const=0.0):
@@ -588,7 +584,7 @@ else:
 
 ### Generalized Advantage Estimate GAE:
 
-We use an Advantage Estimator that has two parameters $\gamma \space and \space \lambda$ for bias-variance trade off as explained in this famous [paper](https://arxiv.org/pdf/1506.02438.pdf) 
+We use an Advantage Estimator that has two parameters $$\gamma \space and \space \lambda$$ for bias-variance trade off as explained in [GAE paper](https://arxiv.org/pdf/1506.02438.pdf) 
 
 We initialize all the values first .
 
@@ -689,7 +685,7 @@ total_loss = policy_loss + self.value_loss_coef * value_loss - self.entropy_coef
 
 5. [http://rail.eecs.berkeley.edu/deeprlcourse-fa17/f17docs/lecture_13_advanced_pg.pdf](http://rail.eecs.berkeley.edu/deeprlcourse-fa17/f17docs/lecture_13_advanced_pg.pdf)
 
-6. [https://www.stat.auckland.ac.nz/~fewster/325/notes/ch3.pdf](https://www.stat.auckland.ac.nz/~fewster/325/notes/ch3.pdf)
+6. [Expectation](https://www.stat.auckland.ac.nz/~fewster/325/notes/ch3.pdf)
 7. [Pong from Pixels](http://karpathy.github.io/2016/05/31/rl/)
 
 ### Video Tutorials:
