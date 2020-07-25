@@ -453,7 +453,7 @@ We just want to **clip** this ratio.
 
 [https://cs.uwaterloo.ca/~ppoupart/teaching/cs885-spring18/slides/cs885-lecture15b.pdf](https://cs.uwaterloo.ca/~ppoupart/teaching/cs885-spring18/slides/cs885-lecture15b.pdf)
 
-We can see that the ratio r is clipped between $1+\epsilon$ and $1-\epsilon$ where $\epsilon$ is the clipping hyperparameter 
+We can see that the ratio r is clipped between $$1+\epsilon$$ and $$1-\epsilon$$ where $$\epsilon$$ is the clipping hyperparameter 
 
 The Clipped objective is :
 
@@ -473,7 +473,7 @@ We should note the partial trajectories and the minibatches update for a batch.
 
 When we use PPO network in an architecture like Actor Critic , (where Policy is actor and Value is critic ) , we use the following in the objective
 
-1.Clipped rewards(Surrogate Function)
+1. Clipped rewards(Surrogate Function)
 
 2. Squared Error Loss (Critic)
 
