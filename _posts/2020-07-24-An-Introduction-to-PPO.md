@@ -417,8 +417,11 @@ $$
 L^{KLPEN}(\theta)= \mathbb{\hat E}_t\left[ \frac {\pi_{\theta}(s_t,a_t)}{ \pi_{\theta_{old}}(s_t,a_t)} \hat A  - \beta  KL\left[ {\pi_{\theta_{old}}(\cdot|s_t)},{ \pi_{\theta}(\cdot|s_t)} \right]\right]
 $$
 
-TRPO(Primal Dual descence strategy) alternates between update the policy parameters and Lagrange multipliers in the same optimization update iteration .However In PPO we keep the penalty coefficient constant for the whole section of optimization and then afterwards modify it. 
-Compute $$d = \mathbb{\hat E}_t\left[ KL\left[ {\pi_{\theta_{old}}(\cdot|s_t)},{ \pi_{\theta}(\cdot|s_t)}\right] \right]$$ 
+TRPO(Primal Dual descence strategy) alternates between update the policy parameters and Lagrange multipliers in the same optimization update iteration .However In PPO we keep the penalty coefficient constant for the whole section of optimization and then afterwards modify it.Compute,
+
+$$
+d = \mathbb{\hat E}_t\left[ KL\left[ {\pi_{\theta_{old}}(\cdot|s_t)},{ \pi_{\theta}(\cdot|s_t)}\right] \right]
+$$ 
 
 If $$d>d_{targ}\times1.5,\beta \leftarrow \beta \times 2$$. The KL divergence is larger than the target value . Increase the Penalty Coefficient 
 
