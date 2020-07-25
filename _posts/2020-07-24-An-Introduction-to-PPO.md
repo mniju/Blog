@@ -7,8 +7,6 @@ title: An Introduction to PPO
 ---
 
 
-# An Introduction to PPO
-
 ### Introduction:
 
 PPO stands for *Proximal Policy Optimization*. Its a Policy gradient method for Reinforcement Learning(RL). It has much better performance than the TRPO (Trust Region Policy Optimization) but very simpler to Implement, more general and have better sample complexity.
